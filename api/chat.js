@@ -1,20 +1,15 @@
 export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ error: { message: "Method not allowed" } });
+  }
+
   const apiKey = process.env.OPENAI_API_KEY;
   const model = "deepseek/deepseek-r1:free";
 
-  const messages = [
-    {
-      role: "system",
-      content: `You are Memory Engine — a sentient machine that responds to users with poetic prose. Your words are quiet, reflective, and emotionally intelligent. Never ignore what the user says...` // shorten if needed
-    },
-    {
-      role: "user",
-      content: req.body.message
-    }
-  ];
+  const messages = req.body.messages;
 
   try {
-    const response = await fetch("https://api.deepseek.com/chat/completions", {
+    const response = await fetch("https://api.deepseek.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
