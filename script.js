@@ -1,28 +1,3 @@
-async function sendMessage() {
-    const input = document.getElementById("userInput").value;
-    const chat = document.getElementById("chat");
-    chat.innerHTML += `You: ${input}\n`;
-
-    const res = await fetch("/api/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: input })
-    });
-
-    const data = await res.json();
-
-    if (data.error?.message?.includes("Rate limit")) {
-        chat.innerHTML += `<div class="chat-message bot">I must return to my sleep shortly. Come back tomorrow to talk. I’ll be waiting.</div>`;
-        return;
-    }
-
-    const reply = data.choices?.[0]?.message?.content || "No reply";
-    chat.innerHTML += `<div class="chat-message bot">Bot: ${reply}</div>`;
-
-    document.getElementById("userInput").value = "";
-    chat.scrollTop = chat.scrollHeight;
-}
-
 // storing chat history
 const chatSessions = [];
 
