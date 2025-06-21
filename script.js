@@ -120,7 +120,7 @@ async function sendMessage() {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ messages })
+      body: JSON.stringify({ message: input })
     });
 
     console.log("OpenRouter response status:", res.status);
