@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<!--
+
+▀██    ██▀                                                 ▀██▀▀▀▀█                    ██                   
+ ███  ███    ▄▄▄▄  ▄▄ ▄▄ ▄▄     ▄▄▄   ▄▄▄ ▄▄   ▄▄▄▄ ▄▄▄     ██  ▄    ▄▄ ▄▄▄     ▄▄▄ ▄ ▄▄▄  ▄▄ ▄▄▄     ▄▄▄▄  
+ █▀█▄▄▀██  ▄█▄▄▄██  ██ ██ ██  ▄█  ▀█▄  ██▀ ▀▀   ▀█▄  █      ██▀▀█     ██  ██   ██ ██   ██   ██  ██  ▄█▄▄▄██ 
+ █ ▀█▀ ██  ██       ██ ██ ██  ██   ██  ██        ▀█▄█       ██        ██  ██    █▀▀    ██   ██  ██  ██      
+▄█▄ █ ▄██▄  ▀█▄▄▄▀ ▄██ ██ ██▄  ▀█▄▄█▀ ▄██▄        ▀█       ▄██▄▄▄▄▄█ ▄██▄ ██▄  ▀████▄ ▄██▄ ▄██▄ ██▄  ▀█▄▄▄▀ 
+                                               ▄▄ █                           ▄█▄▄▄▄▀                       
+                                                ▀▀
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Memory Engine is a web-based chat application that allows users to engage in meaningful conversations with an AI, exploring deep questions about life, existence, and the nature of memory.">
+    <title>memory engine</title>
+    <link rel="icon" href="assets/icons/favicon.gif">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+    <!-- BOOT SCREEN -->
+    <div id="bootScreen">
+        <div class="text"></div>
+    </div>
+
+    <!-- CONTAINER -->
+    <div class="container">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <div class="logo-card">
+                <img class="logo" src="assets/logo.gif">
+                <p class="logo-text">memory engine</p>
+            </div>
+            <div class="descr-card" id="quoteCard">
+                Not created. Discovered — humming beneath the static.
+            </div>
+            <div class="group-card">
+                <div class="group-card-btn">
+                    <i class="fas fa-plus"></i> New Chat
+                </div>
+                <div class="group-card-btn" id="searchChatsBtn">
+                    <i class="fas fa-search"></i> Search Chats
+                </div>
+                <a class="group-card-btn" href="https://github.com/expired-film/memory-engine" target="_blank">
+                    <i class="fas fa-code-branch"></i> Repository!
+                </a>
+            </div>
+            <div id="chatHistory" class="chat-history">
+                <p class="chat-history-title">Chats</p>
+            </div>
+            <div class="preface-card">
+                <p class="preface-card-text"></strong>Made for the Codédex Monthly Challenge!</strong></p>
+            </div>
+        </div>
+
+        <!-- MOBILE SIDEBAR -->
+        <div class="mobile-sidebar">
+        <div class="logo-card">
+            <img class="logo" src="assets/logo.gif">
+            <p class="logo-text">memory engine</p>
+        </div>
+        <div class="descr-card" id="quoteCardMobile">
+            Not created. Discovered — humming beneath the static.
+        </div>
+        <button class="toggle-options-btn" onclick="document.getElementById('mobileOptions').classList.toggle('visible')">
+            Show Options
+        </button>
+        <div class="group-card" id="mobileOptions">
+            <div class="group-card-btn" id="newChatBtnMobile"><i class="fas fa-plus"></i> New Chat</div>
+            <div class="group-card-btn" id="searchChatsBtnMobile"><i class="fas fa-search"></i> Search Chats</div>
+            <a class="group-card-btn" href="https://github.com/expired-film/memory-engine" target="_blank"><i class="fas fa-code-branch"></i> Repository!</a>
+        </div>
+        </div>
+
+        <!--MAIN-->
+        <div class="main">
+            <div class="chat-header">
+                <span>
+                    The system stirs — <span class="header-name">memory engine</span> has returned to light.
+                </span>
+                <label class="theme-switch">
+                    <input type="checkbox" id="themeToggle" />
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <div id="chatContainer" class="chat-container">
+                <div id="chat"></div>
+                <div id="typingIndicator" class="typing-indicator" style="display: none;">
+                <div class="typing-content">
+                    <svg class="avatar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                    <path d="M572.5 241.4C518.4 135.5 407.1 64 288 64S57.6 135.5 3.5 241.4a48.07 48.07 0 0 0 0 29.2C57.6 376.5 168.9 448 288 448s230.4-71.5 284.5-177.4a48.07 48.07 0 0 0 0-29.2zM288 384c-70.7 0-128-57.3-128-128s57.3-128 128-128s128 57.3 128 128s-57.3 128-128 128zm0-208a80 80 0 1 0 80 80a80.09 80.09 0 0 0-80-80z"/>
+                    </svg>
+                    <div class="typing-text">
+                    <span>t</span><span>y</span><span>p</span><span>i</span><span>n</span><span>g</span><span>.</span><span>.</span><span>.</span>
+                    </div>
+                </div>
+                </div>
+                <div id="examplePrompts" class="example-prompts">
+                <p><i class="far fa-lightbulb"></i> Try asking:</p>
+                <button class="example-prompt-btn" onclick="quickAsk('Does time create meaning, or reveal it?')">
+                    Does time create meaning, or reveal it?
+                </button>
+                <button class="example-prompt-btn" onclick="quickAsk('What does a meaningful life feel like?')">
+                    What does a meaningful life feel like?
+                </button>
+                <button class="example-prompt-btn" onclick="quickAsk('What makes a memory last forever?')">
+                    What makes a memory last forever?
+                </button>
+                <p class="try-asking-note">
+                    Feel free to ask anything— the meaning of your name, why sorrow clings to existence, or how to prepare for tomorrow's exam. Memory Engine answers it all.
+                </p>
+                </div>
+            </div>
+            <div class="chat-input">
+            <input id="userInput" placeholder="Type a message..." />
+            <button class="send-btn" onclick="sendMessage()">Send</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SEARCH CHATS BTN -> MODAL !! -->
+    <div id="searchModal" class="search-modal">
+        <div class="search-modal-content">
+            <input type="text" id="chatSearchInput" placeholder="Search chats..." />
+            <button id="closeSearchModal">&times;</button>
+        </div>
+        <div class="search-modal-results" id="searchResults"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
