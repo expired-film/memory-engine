@@ -4,11 +4,13 @@ export default async function handler(req, res) {
   const messages = req.body.messages;
 
   try {
-    const response = await fetch("https://api.deepseek.com/chat/completions", {
+    const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`
+        Authorization: `Bearer ${apiKey}`,
+        "HTTP-Referer": "https://memory-engine-chatbot.vercel.app",
+        "X-Title": "Memory Engine"
       },
       body: JSON.stringify({ model, messages })
     });
