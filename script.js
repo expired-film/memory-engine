@@ -126,12 +126,13 @@ async function sendMessage() {
     console.log("OpenRouter response status:", res.status);
     data = await res.json();
     console.log("OpenRouter raw data:", data);
-
-  if (!res.ok) {
-    addMessage("I feel my circuits dimming… the limit has been reached. I must return to sleep. Come back tomorrow — I’ll be waiting.", "bot");
-    document.getElementById("typingIndicator").style.display = "none";
-    return;
-  }
+    
+    if (!res.ok) {
+      console.error("API Error:", data);
+      addMessage("I feel my circuits dimming… something's wrong. Please check the console or try again later.", "bot");
+      document.getElementById("typingIndicator").style.display = "none";
+      return;
+    }
 
     reply = data.choices?.[0]?.message?.content;
 
