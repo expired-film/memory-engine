@@ -128,7 +128,7 @@ async function sendMessage() {
     console.log("OpenRouter raw data:", data);
     
     if (!res.ok) {
-      console.error("API Error:", data);
+      console.error("API Error:", JSON.stringify(data, null, 2));
       addMessage("I feel my circuits dimming… something's wrong. Please check the console or try again later.", "bot");
       document.getElementById("typingIndicator").style.display = "none";
       return;
